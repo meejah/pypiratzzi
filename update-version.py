@@ -16,6 +16,7 @@ author = "meejah <meejah@meejah.ca>"
 
 import sys
 import time
+import shutil
 import itertools
 from datetime import datetime
 
@@ -67,6 +68,13 @@ async def main(reactor):
         print(v)
         return
 
+
+    print("Bumping hatching version")
+    print(("-m", "hatchling", "version", str(v)))
+    await getProcessOutput(sys.executable, ("-m", "hatchling", "version", str(v)))
+    await getProcessOutput(shutil.which("git"), ("add", "-u"))
+    await getProcessOutput(shutil.which("git"), ("commit", "-m", f"Bump version to {v}"))
+
     print("Existing tags: {}".format(" ".join(existing_tags(git))))
     print("New tag will be {}".format(v))
 
@@ -94,10 +102,6 @@ async def main(reactor):
     print("Tag created locally, it is not pushed")
     print("To push it run something like:")
     print("   git push origin {}".format(v))
-
-    hatch_cmd = []
-    print(f"Running: {hatch_cmd}")
-    await getProcessOutput(sys.executable, ("-m", "hatchling", "version", str(v)))
 
 
 if __name__ == "__main__":
