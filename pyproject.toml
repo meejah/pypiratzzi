@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hancock"
+dynamic = ["version"]
+description = "hancock downloads signatures from PyPI."
+readme = "README.rst"
+license.text = "MIT"
+authors = [
+    { name = "meejah", email = "meejah@meejah.ca" },
+]
+requires-python = ">=3.6"
+keywords = [
+    "cryptography",
+    "signatures",
+    "pypi",
+]
+classifiers = [
+    "Framework :: Twisted",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "setuptools",
+    "click",
+    "twisted",
+    "treq",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-twisted",
+    "pytest-cov",
+    "cuvner",
+]
+dev = [
+    "twine",
+    "sphinx",
+    "dulwich",
+    "gpg",  # should use isis lovecruft's version?
+]
+
+[project.scripts]
+hancock = "hancock.cli:_entry"
+
+[tool.hatch.version]
+path = "src/hancock/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src",
+    "README.rst",
+    "pyproject.toml",
+    "requirements-pinned.txt",
+]
+exclude = [
+    "*~",
+    "*.egg-info*",
+]
