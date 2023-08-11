@@ -7,7 +7,7 @@ name = "hancock"
 dynamic = ["version"]
 description = "hancock downloads signatures from PyPI."
 readme = "README.rst"
-license.text = "MIT"
+license.text = "GPL"
 authors = [
     { name = "meejah", email = "meejah@meejah.ca" },
 ]
