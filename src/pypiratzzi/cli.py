@@ -15,15 +15,15 @@ from twisted.web.http_headers import Headers
     type=click.Path(file_okay=False, writable=True, resolve_path=True, exists=True),
 )
 @click.argument("package")
-def hancock(*args, **kw):
+def pypiratzzi(*args, **kw):
     react(
         lambda reactor: ensureDeferred(
-            _run_hancock(reactor, *args, **kw)
+            _run_pypiratzzi(reactor, *args, **kw)
         )
     )
 
 
-async def _run_hancock(reactor, signatures, package):
+async def _run_pypiratzzi(reactor, signatures, package):
     """
     Download all signatures for the given ``package`` that aren't
     already in the directory of ``signatures``.
@@ -71,4 +71,4 @@ def _load_existing_signatures(fp):
 
 
 def _entry():
-    hancock()
+    pypiratzzi()
