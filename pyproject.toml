@@ -42,6 +42,7 @@ dev = [
     "gpg",  # should use isis lovecruft's version?
     "pip-tools",
     "hatchling",
+    "readme_renderer",
 ]
 
 [project.scripts]
