@@ -32,6 +32,9 @@ from twisted.internet.task import (
 from twisted.internet.defer import (
     ensureDeferred,
 )
+from twisted.internet.utils import (
+    getProcessOutput,
+)
 
 
 def existing_tags(git):
@@ -91,6 +94,10 @@ async def main(reactor):
     print("Tag created locally, it is not pushed")
     print("To push it run something like:")
     print("   git push origin {}".format(v))
+
+    hatch_cmd = []
+    print(f"Running: {hatch_cmd}")
+    await getProcessOutput(sys.executable, ("-m", "hatchling", "version", str(v)))
 
 
 if __name__ == "__main__":
