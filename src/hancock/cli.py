@@ -1,7 +1,6 @@
 
 import click
 import treq
-from rich import print
 from twisted.python.filepath import FilePath
 from twisted.internet.task import react
 from twisted.internet.defer import ensureDeferred
@@ -50,7 +49,7 @@ async def _run_hancock(reactor, signatures, package):
             continue
         result = await treq.get(asc_url)
         if result.code >= 300:
-            print(f" [red]failed {result.code}[/red]")
+            print(f" failed {result.code}")
             continue
         print(" .", end="", flush=True)
         data = await result.content()
