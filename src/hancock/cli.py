@@ -13,7 +13,7 @@ from twisted.web.http_headers import Headers
     "--signatures",
     default=".",
     help="The directory where signatures will be written to (and read from)",
-    type=click.Path(file_okay=False, writable=True, resolve_path=True),
+    type=click.Path(file_okay=False, writable=True, resolve_path=True, exists=True),
 )
 @click.argument("package")
 def hancock(*args, **kw):
@@ -49,6 +49,9 @@ async def _run_hancock(reactor, signatures, package):
             print(" cached")
             continue
         result = await treq.get(asc_url)
+        if result.code >= 300:
+            print(f" [red]failed {result.code}[/red]")
+            continue
         print(" .", end="", flush=True)
         data = await result.content()
         print(f". {len(data)} bytes")
