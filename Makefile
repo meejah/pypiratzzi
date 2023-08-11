@@ -18,3 +18,8 @@ undo-release:
 release-upload:
 	@ls dist/pypiratzzi-`git describe --abbrev=0`*
 	twine upload --username __token__ dist/pypiratzzi-`git describe --abbrev=0`*
+	mv dist/pypiratzzi-`git describe --abbrev=0`.tar.gz.asc signatures/
+	mv dist/pypiratzzi-`git describe --abbrev=0`-py3-none-any.whl.asc signatures/
+	git add signatures/pypiratzzi-`git describe --abbrev=0`.tar.gz.asc
+	git add signatures/pypiratzzi-`git describe --abbrev=0`-py3-none-any.whl.asc
+	git commit -m "signatures for release"
