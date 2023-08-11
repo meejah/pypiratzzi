@@ -16,4 +16,4 @@ undo-release:
 
 release-upload:
 	@ls dist/pypiratzzi-`git describe --abbrev=0`*
-	twine upload dist/pypiratzzi-`git describe --abbrev=0`*
+	twine upload --username __token__ dist/pypiratzzi-`git describe --abbrev=0`*
