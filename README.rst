@@ -11,7 +11,9 @@ One use-case for this is to commit all past signatures to source-control.
 Using hancock
 -------------
 
-Example::
+For example, I recently migrated "magic-wormhole" signatures from PyPI:
+
+.. code-block:: shell
 
     $ hancock --signatures ~/src/magic-wormhole/signatures magic-wormhole
 
