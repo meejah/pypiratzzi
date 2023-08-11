@@ -1,6 +1,6 @@
 
 pypiratzzi
-=======
+==========
 
 PyPI stopped accepting signatures for uploaded artifacts.
 ``pypiratzzi`` downloads all signatures for all releases for a project from PyPI.
